@@ -1,0 +1,17 @@
+[
+        {
+            "deviceId": "arduino-uno-pump",
+            "name": "Water pump",
+            "type": "pump",
+            "settings": {
+                "manualMode": false,
+                "waterInterval": 10000
+            }
+        },
+        {
+            "deviceId": "sensor-tomato",
+            "name": "Tomato sensor",
+            "type": "sensor",
+            "settings": {}
+        }
+]
