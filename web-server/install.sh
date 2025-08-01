@@ -20,8 +20,7 @@ static domain_name_servers=${DNS_SERVER}
 EOF
 
 echo "==> Installing Docker..."
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+curl -fsSL https://get.docker.com | sh
 
 echo "==> Adding user '$USER' to docker group..."
 sudo usermod -aG docker "$USER"

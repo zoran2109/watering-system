@@ -37,16 +37,22 @@ When you turn on RPi for the first time, you should wait few minutes for OS to b
     - Identify which IP is your RPi's
     - SSH into your RPi the following way: **ssh your_username@your_local_ip_address** and enter password
     - If everything works, prompt with hostname of your newly set RPi will show in terminal
-    - Create home/repo folder with ***sudo mkdir /home/repo**
-    - Clone this repository with: ----
+    - Create /home/repo folder with **sudo mkdir /home/repo**
+    - Navigate to /home/repo folder
+    - Install git with: **sudo apt install git**
+    - Clone this repository with: **git clone https://github.com/zoran2109/watering-system.git**
 
 ### Start web server on Raspberry Pi
 1. If you're not already, open terminal, SSH into your RPi from your computer the following way: **ssh your_username@your_local_ip_address** and enter password
 2. Navigate to /home/repo/watering/web-server folder. In this folder there should be install.sh script.
-3. Run the following to set the static IP, install the project's dependencies and running dockerized web-server:
-    - STATIC_IP=<SET_HERE_WANTED_STATIC_IP> ROUTER_IP=<YOUR_ROUTER_IP> DNS_SERVER=<YOUR_DNS_SERVER> ./install.sh
-4. Reboot the RPi with **sudo reboot** command for static IP to be set.
-5. Your server's frontend should be accessible on "http://localhost:80" in the RPi and on "http://<RPI_STATIC_IP_ADDRESS" on LAN.
+3. Make the script executable: **sudo chmod +x ./install.sh**
+4. Run the following to set the static IP, install the project's dependencies and running dockerized web-server:
+export STATIC_IP=<WANTED_STATIC_IP>
+export ROUTER_IP=<YOUR_ROUTER_IP>
+export DNS_SERVER=<YOUR_DNS_SERVER>
+./install.sh
+5. Reboot the RPi with **sudo reboot** command for static IP to be set.
+6. Your server's frontend should be accessible on "http://localhost:80" in the RPi and on "http://<RPI_STATIC_IP_ADDRESS" on LAN.
 
 ### Setting Tailscale for remote access to web server (OPTIONAL)
 TODO
