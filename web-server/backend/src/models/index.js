@@ -1,21 +1,22 @@
-import { Sequelize } from 'sequelize';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import DeviceModel from './device.js';
-import DeviceLogModel from './deviceLog.js';
+import { Sequelize } from 'sequelize'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import DeviceModel from './device.js'
+import DeviceLogModel from './deviceLog.js'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: path.join(__dirname, '../data/database.sqlite'),
-  logging: false,
-});
+    dialect: 'sqlite',
+    storage: path.join(__dirname, '../data/database.sqlite'),
+    logging: false,
+})
 
-const Device = DeviceModel(sequelize);
-const DeviceLog = DeviceLogModel(sequelize);
+const Device = DeviceModel(sequelize)
+const DeviceLog = DeviceLogModel(sequelize)
 
-Device.hasMany(DeviceLog, { foreignKey: 'deviceId' });
-DeviceLog.belongsTo(Device, { foreignKey: 'deviceId' });
+Device.hasMany(DeviceLog, { foreignKey: 'deviceId', as: 'logs' })
+Device.hasMany(DeviceLog, { foreignKey: 'deviceId', as: 'latestLog' }) // needed for include alias
+DeviceLog.belongsTo(Device, { foreignKey: 'deviceId' })
 
-export { sequelize, Device, DeviceLog };
+export { sequelize, Device, DeviceLog }

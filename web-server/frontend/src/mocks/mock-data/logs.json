@@ -1,0 +1,61 @@
+{
+    "sensor-tomato": [
+        {
+            "id": 1,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 880 },
+            "timestamp": "2025-08-01T23:49:05.169Z",
+            "createdAt": "2025-08-01T23:49:05.177Z",
+            "updatedAt": "2025-08-01T23:49:05.177Z"
+        },
+        {
+            "id": 2,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 891 },
+            "timestamp": "2025-08-01T23:50:36.985Z",
+            "createdAt": "2025-08-01T23:50:36.986Z",
+            "updatedAt": "2025-08-01T23:50:36.986Z"
+        },
+        {
+            "id": 3,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 894 },
+            "timestamp": "2025-08-02T00:00:37.657Z",
+            "createdAt": "2025-08-02T00:00:37.658Z",
+            "updatedAt": "2025-08-02T00:00:37.658Z"
+        },
+        {
+            "id": 4,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 895 },
+            "timestamp": "2025-08-02T00:10:38.346Z",
+            "createdAt": "2025-08-02T00:10:38.347Z",
+            "updatedAt": "2025-08-02T00:10:38.347Z"
+        },
+        {
+            "id": 5,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 899 },
+            "timestamp": "2025-08-02T05:48:41.773Z",
+            "createdAt": "2025-08-02T05:48:41.773Z",
+            "updatedAt": "2025-08-02T05:48:41.773Z"
+        },
+        {
+            "id": 6,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 924 },
+            "timestamp": "2025-08-02T06:08:47.441Z",
+            "createdAt": "2025-08-02T06:08:47.442Z",
+            "updatedAt": "2025-08-02T06:08:47.442Z"
+        },
+        {
+            "id": 7,
+            "deviceId": "sensor-tomato",
+            "logData": { "moisture": 925 },
+            "timestamp": "2025-08-02T06:18:48.218Z",
+            "createdAt": "2025-08-02T06:18:48.218Z",
+            "updatedAt": "2025-08-02T06:18:48.218Z"
+        }
+    ],
+    "arduino-uno-pump": []
+}

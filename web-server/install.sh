@@ -30,6 +30,6 @@ sudo apt-get update
 sudo apt-get install -y docker-compose-plugin
 
 echo "==> Starting Docker Compose from current directory: $(pwd)"
-docker-compose up -d
+sudo docker compose up -d
 
 echo "✅ Setup complete. Reboot recommended for static IP and Docker group to take effect."

@@ -1,0 +1,38 @@
+[
+    {
+        "deviceId": "arduino-uno-pump",
+        "name": "Water pump",
+        "type": "pump",
+        "settings": {
+            "manualMode": true,
+            "waterInterval": 10000,
+            "wateringHour": 21
+        },
+        "lastLog": {
+            "id": 7,
+            "deviceId": "arduino-pump",
+            "logData": {
+                "wateringDuration": 100000
+            },
+            "timestamp": "2025-08-01T23:51:00.010Z"
+        },
+        "createdAt": "2025-07-30T14:26:11.153Z",
+        "updatedAt": "2025-07-30T14:26:11.153Z"
+    },
+    {
+        "deviceId": "sensor-tomato",
+        "name": "Tomato sensor",
+        "type": "sensor",
+        "settings": {},
+        "lastLog": {
+            "id": 5,
+            "deviceId": "sensor-tomato",
+            "logData": {
+                "moisture": 800
+            },
+            "timestamp": "2025-08-01T23:49:05.169Z"
+        },
+        "createdAt": "2025-07-30T20:20:14.002Z",
+        "updatedAt": "2025-07-30T20:20:14.002Z"
+    }
+]

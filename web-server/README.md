@@ -51,12 +51,13 @@ export STATIC_IP=<WANTED_STATIC_IP>
 export ROUTER_IP=<YOUR_ROUTER_IP>
 export DNS_SERVER=<YOUR_DNS_SERVER>
 ./install.sh
+Building docker compose file on RPicould last for a while.
 5. Reboot the RPi with **sudo reboot** command for static IP to be set.
 6. Your server's frontend should be accessible on "http://localhost:80" in the RPi and on "http://<RPI_STATIC_IP_ADDRESS" on LAN.
 
 ### Setting Tailscale for remote access to web server (OPTIONAL)
 TODO
 
-### Setting GitHub actions for Continuous Integration
+### Setting GitHub actions for Continuous Integration (OPTIONAL)
 TODO
 
