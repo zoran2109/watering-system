@@ -11,7 +11,7 @@ import { LogsTable } from './components/LogsTable'
 import { Settings } from './components/Settings'
 import { ToastContainer } from 'react-toastify'
 
-function App() {
+const App = () => {
     const [devices, setDevices] = useState([])
     const [modalView, setModalView] = useState(null)
     const [refetch, toggleRefetch] = useState(false)
