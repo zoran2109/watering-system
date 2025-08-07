@@ -1,3 +1,5 @@
+import { formatTimeForLogs } from '../helpers/utils'
+
 export const LogsTable = ({ logs }) => (
     <table className="min-w-full text-sm text-left border border-border text-text-main mt-5">
         <thead className="bg-bg-muted text-text-muted">
@@ -20,7 +22,7 @@ export const LogsTable = ({ logs }) => (
                 logs.map((log) => (
                     <tr key={log.id} className="hover:bg-bg-hover">
                         <td className="px-4 py-2 border-b border-border">
-                            {new Date(log.timestamp).toLocaleString()}
+                            {formatTimeForLogs(log.timestamp)}
                         </td>
                         <td className="px-4 py-2 border-b border-border">
                             {log.logData.moisture !== undefined

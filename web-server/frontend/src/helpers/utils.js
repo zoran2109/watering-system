@@ -10,3 +10,6 @@ export const formatTimeFromNow = (timestamp) => {
         timestamp
     ).fromNow()})`
 }
+
+export const formatTimeForLogs = (timestamp) =>
+    dayjs(timestamp).format('DD-MM-YYYY HH:mm')
