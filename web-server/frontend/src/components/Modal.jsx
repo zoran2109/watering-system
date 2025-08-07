@@ -9,7 +9,6 @@ export default function Modal({ open, onClose, children }) {
                 onClose()
             }
         }
-
         document.addEventListener('mousedown', handleClickOutside)
         return () =>
             document.removeEventListener('mousedown', handleClickOutside)
