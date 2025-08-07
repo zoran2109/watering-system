@@ -5,7 +5,7 @@
         "type": "pump",
         "settings": {
             "manualMode": true,
-            "waterInterval": 10000,
+            "wateringDuration": 10000,
             "wateringHour": 21
         },
         "lastLog": {

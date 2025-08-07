@@ -21,7 +21,7 @@ cron.schedule('*/30 * * * *', async () => {
 
         for (const pump of pumps) {
             const { deviceId, settings } = pump
-            const { wateringHour, waterInterval } = settings
+            const { wateringHour, wateringDuration } = settings
 
             // Skip if wateringHour isn't set
             if (wateringHour === undefined) continue
@@ -50,7 +50,7 @@ cron.schedule('*/30 * * * *', async () => {
                     },
                     body: JSON.stringify({
                         command: 'WATER',
-                        duration: waterInterval || 10000,
+                        duration: wateringDuration || 10000,
                     }),
                 })
             } else {

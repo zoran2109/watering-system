@@ -1,39 +1,62 @@
+// Copy this code to Arduino IDE
+
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
+// WiFi credentials
 const char* ssid = "NETWORK_SSID";
 const char* password = "WIFI_PASSWORD";
 
-const String deviceId = "SENSOR_NAME"; // Unique ID for your device
+// Server and device ID
+const String deviceId = "SENSOR_NAME";
 const String serverUrl = "http://RPI_WEB_SERVER_IP:3000/logs";
 
-// Pin for moisture sensor
+// Moisture sensor pins
 const int sensorPin = A0;
+const int sensorPowerPin = D6; // Powering sensor via GPIO
+
+// Deep sleep time (in microseconds)
+const uint64_t sleepTime = 60 * 60 * 1000000ULL; // 1 hour
+
+int getAverageMoisture(int samples = 5) {
+  long total = 0;
+  for (int i = 0; i < samples; i++) {
+    total += analogRead(sensorPin);
+    delay(50);
+  }
+  return total / samples;
+}
 
 void setup() {
   Serial.begin(115200);
   delay(100);
 
+  // Power on the sensor if using GPIO
+  pinMode(sensorPowerPin, OUTPUT);
+  digitalWrite(sensorPowerPin, HIGH);
+
+  delay(300); // Wait for sensor to stabilize
+
+  int moisture = getAverageMoisture();
+  Serial.println("Average Moisture: " + String(moisture));
+
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi");
 
-  while (WiFi.status() != WL_CONNECTED) {
+  int retries = 0;
+  while (WiFi.status() != WL_CONNECTED && retries < 20) {
     delay(500);
     Serial.print(".");
+    retries++;
   }
 
-  Serial.println("\nConnected to WiFi");
-}
-
-void loop() {
   if (WiFi.status() == WL_CONNECTED) {
-    int moisture = analogRead(sensorPin);
-    Serial.println("Moisture: " + String(moisture));
+    Serial.println("\nConnected to WiFi");
 
     WiFiClient client;
     HTTPClient http;
 
-    http.begin(client, serverUrl); // ✅ correct usage now
+    http.begin(client, serverUrl);
     http.addHeader("Content-Type", "application/json");
 
     String json = "{\"deviceId\":\"" + deviceId + "\",\"logData\":{\"moisture\":" + String(moisture) + "}}";
@@ -45,7 +68,17 @@ void loop() {
     Serial.println("Response: " + response);
 
     http.end();
+  } else {
+    Serial.println("\nWiFi not connected. Skipping upload.");
   }
 
-  delay(10 * 60 * 1000); // 10 minutes
+  // Power off the sensor
+  digitalWrite(sensorPowerPin, LOW);
+
+  Serial.println("Going to sleep...");
+  ESP.deepSleep(sleepTime);
+}
+
+void loop() {
+  // Not used with deep sleep
 }

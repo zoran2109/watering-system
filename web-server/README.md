@@ -56,8 +56,16 @@ Building docker compose file on RPicould last for a while.
 6. Your server's frontend should be accessible on "http://localhost:80" in the RPi and on "http://<RPI_STATIC_IP_ADDRESS" on LAN.
 
 ### Setting Tailscale for remote access to web server (OPTIONAL)
-TODO
+To set remote access with Tailscale follow these steps:
+1. Run **sudo apt update && sudo apt upgrade -y**
+2. Install tailscale with **curl -fsSL https://tailscale.com/install.sh | sh**
+3. When tailscale is installed, run **sudo tailscale up** to authenticate to tailscale
+4. Tailscale will give a link that needs to be openedto authenticate
+5. After succesful authentication, add more devices (machines) if needed on tailscale admin panel
+6. Enable Tailscale Funnel in Settings
+7. Run the following command to run expose the server (assuming the server is up) to other devices: **sudo tailscale serve -bg --https=80 127.0.0.1:80**
+8. Use the provided url to access the app remotely
 
-### Setting GitHub actions for Continuous Integration (OPTIONAL)
-TODO
-
+### Setting GitHub Actions to automate deployment (OPTIONAL)
+If you want automated redeployment of the web server when changes are pushed to the repo:
+- check /deploy README and follow the steps

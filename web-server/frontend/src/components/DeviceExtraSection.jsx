@@ -3,7 +3,7 @@ import { formatTimeFromNow } from '../helpers/utils'
 
 export const PumpExtraSection = ({ pumpData }) => {
     const { settings, lastLog } = pumpData
-    const { manualMode, waterInterval, wateringHour } = settings
+    const { manualMode, wateringDuration, wateringHour } = settings
 
     return (
         <>
@@ -14,14 +14,14 @@ export const PumpExtraSection = ({ pumpData }) => {
                 Last watered: {formatTimeFromNow(lastLog?.timestamp || {})}
             </p>
             <p className="text-sm text-white/60 mb-2">
-                Watering interval: {waterInterval} ms
+                Watering duration: {wateringDuration} ms
             </p>
             {manualMode ? (
                 <>
                     <div className="flex flex-row-reverse my-2">
                         <button
                             className="bg-green-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-green-500 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                            onClick={() => startWatering(waterInterval)}
+                            onClick={() => startWatering(wateringDuration)}
                         >
                             Start Watering
                         </button>

@@ -5,7 +5,6 @@ import App from './App.jsx'
 import { isProd } from './app.config.js'
 
 async function enableMocking() {
-    console.log(isProd)
     if (isProd) {
         return
     }

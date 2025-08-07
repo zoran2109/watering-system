@@ -5,7 +5,7 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
     const [formData, setFormData] = useState({
         name: '',
         manualMode: false,
-        interval: 60000,
+        duration: 60000,
         hour: 7,
     })
 
@@ -18,7 +18,7 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
             name: formData.name,
             settings: {
                 manualMode: formData.manualMode,
-                waterInterval: formData.interval,
+                wateringDuration: formData.duration,
                 wateringHour: formData.hour,
             },
         }
@@ -65,20 +65,20 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
 
             <div>
                 <label
-                    htmlFor="interval"
+                    htmlFor="duration"
                     className="block text-sm font-medium text-text-muted mb-1"
                 >
-                    Watering Interval (ms)
+                    Watering Duration (ms)
                 </label>
                 <input
                     type="number"
-                    id="interval"
+                    id="duration"
                     min={0}
-                    value={formData.interval}
+                    value={formData.duration}
                     onChange={(e) =>
                         setFormData({
                             ...formData,
-                            interval: Number(e.target.value),
+                            duration: Number(e.target.value),
                         })
                     }
                     className="w-full p-2 rounded border border-border bg-bg-muted text-text-main focus:outline-none focus:ring focus:ring-primary"
