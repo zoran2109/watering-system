@@ -4,7 +4,7 @@ set -e
 cd /home/repo/watering-system/web-server
 
 echo "🔁 Pulling latest changes..."
-git pull origin main
+sudo git pull origin main
 
 echo "🔻 Stopping containers..."
 docker compose down

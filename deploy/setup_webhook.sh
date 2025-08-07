@@ -16,7 +16,7 @@ Description=Webhook Auto Deploy
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 $REPO_PATH/deploy/webhook.py
+ExecStart=/usr/bin/python3 $REPO_PATH/deploy/webhook_server.py
 WorkingDirectory=$REPO_PATH/deploy
 Restart=always
 User=$USERNAME
