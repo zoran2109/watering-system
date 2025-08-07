@@ -22,7 +22,11 @@ function App() {
 
     const openLogs = async (deviceId) =>
         fetchDeviceLogs(deviceId).then((respJson) =>
-            setModalView(<LogsTable logs={respJson} />)
+            setModalView(
+                <div className="max-h-[60vh] overflow-y-auto">
+                    <LogsTable logs={respJson} />
+                </div>
+            )
         )
 
     const openSettings = (deviceId) => {
@@ -32,7 +36,7 @@ function App() {
         const initialData = {
             name: device.name,
             manualMode: device.settings.manualMode,
-            interval: device.settings.waterInterval,
+            duration: device.settings.wateringDuration,
             hour: device.settings.wateringHour,
         }
         setModalView(
