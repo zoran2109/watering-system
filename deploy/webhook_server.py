@@ -7,7 +7,7 @@ class WebhookHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b"Webhook received. Deploying...")
 
-        subprocess.Popen(["/home/pi/deploy.sh"])
+        subprocess.Popen(["/home/repo/watering-system/deploy/deploy.sh"])
 
 def run():
     server = HTTPServer(('0.0.0.0', 9000), WebhookHandler)
