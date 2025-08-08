@@ -27,6 +27,7 @@ export default function Modal({ open, onClose, children }) {
                 >
                     ✕
                 </button>
+
                 {children}
             </div>
         </div>
