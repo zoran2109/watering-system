@@ -2,7 +2,7 @@
 
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
-  digitalWrite(RELAY_PIN, LOW);
+  digitalWrite(RELAY_PIN, HIGH);
   Serial.begin(9600);
   Serial.println("🔌 Arduino ready");
 }
@@ -18,9 +18,9 @@ void loop() {
       Serial.print(duration);
       Serial.println("ms");
 
-      digitalWrite(RELAY_PIN, HIGH);
-      delay(duration);
       digitalWrite(RELAY_PIN, LOW);
+      delay(duration);
+      digitalWrite(RELAY_PIN, HIGH);
 
       Serial.println("✅ Watering done");
     } else {
