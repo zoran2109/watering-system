@@ -32,7 +32,7 @@ router.post('/start-watering', async (req, res) => {
             if (!cmd || !duration) {
                 return res.status(400).json({ error: 'Missing fields' })
             }
-            command = `${cmd} TOMATOES ${duration}`
+            command = `${cmd} ${duration}`
         }
 
         await sendToArduino(command).then(
