@@ -21,4 +21,4 @@ export const formatTimeForLogs = (timestamp) =>
 export const convertUtcHourToLocal = (hour) =>
     dayjs.utc().hour(hour).local().hour()
 
-export const cnvertLocalHourToUtc = (hour) => dayjs().hour(hour).utc().hour()
+export const convertLocalHourToUtc = (hour) => dayjs().hour(hour).utc().hour()
