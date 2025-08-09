@@ -19,6 +19,7 @@ cron.schedule('*/30 * * * *', async () => {
 
         const now = dayjs()
         const today = now.format('YYYY-MM-DD')
+        if (pumps.length === 0) logInfo('No pumps in automatic mode.')
 
         for (const pump of pumps) {
             const { deviceId, settings } = pump
@@ -41,13 +42,7 @@ cron.schedule('*/30 * * * *', async () => {
                 lastLog &&
                 dayjs(lastLog.timestamp).format('YYYY-MM-DD') === today
 
-            logInfo(
-                'Already watered today:',
-                alreadyWateredToday,
-                lastLog,
-                dayjs(lastLog.timestamp).format('YYYY-MM-DD'),
-                today
-            )
+            logInfo('Already watered today:', alreadyWateredToday)
             if (!alreadyWateredToday) {
                 logInfo(`Sending watering command to ${deviceId}`)
 

@@ -6,9 +6,9 @@ The backend is made in Vanilla JS using Node.js and Express. Sequalize is used f
 
 ## TODO
 
--   introduce better logging
--   document code (JSDoc?), improve Swagger UI
--   remove hardcoded values and make things modular
+-   introduce better logging (with log types and coloring)
+-   document code (JSDoc?), add basic Swagger UI docs to test the endpoints; redirect to /docs when opening /
+-   remove hardcoded values, see how to set this with .env, make things modular
 -   add response schema and request validation (zod)?
 
 -   introduce SSE for real-time notifications when watering is done or something is stored to the database
