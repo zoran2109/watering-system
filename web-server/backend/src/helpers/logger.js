@@ -5,15 +5,15 @@ export const log = (...args) => {
 }
 
 export const logError = (...args) => {
-    console.error(`[${timestamp()}] ❌`, ...args)
+    console.error(`[${timestamp()}] ERROR `, ...args)
 }
 
 export const logInfo = (...args) => {
-    console.info(`[${timestamp()}] ℹ️ `, ...args)
+    console.info(`[${timestamp()}] INFO `, ...args)
 }
 
 export const logWarn = (...args) => {
-    console.warn(`[${timestamp()}] ⚠️ `, ...args)
+    console.warn(`[${timestamp()}] WARNING `, ...args)
 }
 
 export function requestLogger(req, res, next) {

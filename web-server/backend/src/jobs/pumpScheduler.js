@@ -21,9 +21,9 @@ cron.schedule('*/30 * * * *', async () => {
         const today = now.format('YYYY-MM-DD')
 
         for (const pump of pumps) {
-            logInfo('Pump found', deviceId)
             const { deviceId, settings } = pump
             const { wateringHour, wateringDuration } = settings
+            logInfo('Pump found', deviceId)
 
             logInfo('Watering hour defined:', wateringHour === undefined)
             if (wateringHour === undefined) continue
