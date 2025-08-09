@@ -33,7 +33,9 @@ export const updateDevice = async (deviceId, payload) =>
         body: JSON.stringify(payload),
     })
 
-export const fetchDeviceLogs = async (deviceId) =>
-    await fetch(
+export const fetchDeviceLogs = async (deviceId) => {
+    const response = await fetch(
         deviceId ? `${deviceLogsApi}?deviceId=${deviceId}` : deviceLogsApi
-    ).then((resp) => resp.json())
+    )
+    return response.json()
+}

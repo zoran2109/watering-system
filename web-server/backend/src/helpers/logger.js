@@ -5,7 +5,7 @@ export const log = (...args) => {
 }
 
 export const logError = (...args) => {
-    console.error(`[${timestamp()}] ERROR `, ...args)
+    console.error(`[${timestamp()}] ERROR`, ...args)
 }
 
 export const logInfo = (...args) => {
@@ -13,14 +13,20 @@ export const logInfo = (...args) => {
 }
 
 export const logWarn = (...args) => {
-    console.warn(`[${timestamp()}] WARNING `, ...args)
+    console.warn(`[${timestamp()}] WARN `, ...args)
 }
 
 export function requestLogger(req, res, next) {
-    const start = Date.now()
-    res.on('finish', () =>
-        log(`${req.method} ${req.originalUrl} ${res.statusCode}`)
-    )
+    const { method, originalUrl } = req
+
+    res.on('finish', () => {
+        const { statusCode } = res
+        const logMethod =
+            statusCode < 400 ? logInfo : statusCode < 500 ? logWarn : logError
+
+        logMethod(`${method} ${originalUrl} ${statusCode}`)
+    })
+
     next()
 }
 

@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react'
 import { updateDevice } from '../api/client'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export const Settings = ({ deviceId, initialData, setClose }) => {
     const [formData, setFormData] = useState({
@@ -10,7 +16,10 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
     })
 
     useEffect(() => {
-        setFormData(initialData)
+        setFormData({
+            ...initialData,
+            hour: dayjs.utc().hour(initialData.hour).local().hour(),
+        })
     }, [initialData])
 
     const save = async () => {
@@ -19,10 +28,12 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
             settings: {
                 manualMode: formData.manualMode,
                 wateringDuration: formData.duration,
-                wateringHour: formData.hour,
+                wateringHour: dayjs().hour(formData.hour).utc().hour(),
             },
         }
-        await updateDevice(deviceId, payload).then(setClose())
+        console.log(deviceId, payload)
+        await updateDevice(deviceId, payload)
+        setClose()
     }
 
     return (
@@ -110,6 +121,7 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
 
             <div className="pt-4">
                 <button
+                    type="button"
                     onClick={save}
                     className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition"
                 >

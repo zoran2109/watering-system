@@ -20,7 +20,7 @@ port.open((err) => {
 })
 
 parser.on('data', (line) => {
-    log(`📥 Arduino says: ${line}`)
+    logInfo(line)
 })
 
 export const sendToArduino = (commandStr) => {

@@ -6,8 +6,18 @@ import logsJson from './mock-data/logs.json'
 export const handlers = [
     http.get(deviceApi, () => HttpResponse.json(devicesJson)),
 
-    http.put(`${deviceApi}/:deviceId`, () => {
-        return HttpResponse.json('200 OK')
+    http.put(`${deviceApi}/:deviceId`, async ({ params, request }) => {
+        const { deviceId } = params
+        const body = await request.json()
+
+        console.log('Received PUT update for device:', deviceId, body)
+
+        // Simulate updating
+        return HttpResponse.json({
+            message: 'Device updated successfully',
+            deviceId,
+            updatedData: body,
+        })
     }),
 
     http.get(deviceLogsApi, ({ request }) => {

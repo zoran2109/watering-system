@@ -1,7 +1,7 @@
 import cron from 'node-cron'
 import { Device, DeviceLog } from '../models/index.js'
 import { SERVER_URL, ROUTE_URLS } from '../helpers/constants.js'
-import { log, logInfo, logError } from '../helpers/logger.js'
+import { logInfo, logError } from '../helpers/logger.js'
 import dayjs from 'dayjs'
 
 cron.schedule('*/30 * * * *', async () => {
@@ -19,18 +19,23 @@ cron.schedule('*/30 * * * *', async () => {
 
         const now = dayjs()
         const today = now.format('YYYY-MM-DD')
-        if (pumps.length === 0) logInfo('No pumps in automatic mode.')
+
+        if (pumps.length === 0) logInfo('No pumps set to automatic mode.')
 
         for (const pump of pumps) {
             const { deviceId, settings } = pump
             const { wateringHour, wateringDuration } = settings
-            logInfo('Pump found', deviceId)
 
-            logInfo('Watering hour defined:', wateringHour === undefined)
+            logInfo('Automated pump found:', deviceId)
+            logInfo(
+                `Watering hour for ${deviceId} defined:`,
+                wateringHour === undefined
+            )
+
             if (wateringHour === undefined) continue
 
             const isHourPassed = now.hour() >= wateringHour
-            logInfo('Is hour passed', isHourPassed, now.hour(), wateringHour)
+            logInfo('Watering hour passed:', isHourPassed)
             if (!isHourPassed) continue
 
             const lastLog = await DeviceLog.findOne({
@@ -42,7 +47,6 @@ cron.schedule('*/30 * * * *', async () => {
                 lastLog &&
                 dayjs(lastLog.timestamp).format('YYYY-MM-DD') === today
 
-            logInfo('Already watered today:', alreadyWateredToday)
             if (!alreadyWateredToday) {
                 logInfo(`Sending watering command to ${deviceId}`)
 
