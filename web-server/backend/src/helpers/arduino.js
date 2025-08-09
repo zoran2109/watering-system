@@ -1,41 +1,41 @@
-import { SerialPort } from 'serialport';
-import { ReadlineParser } from '@serialport/parser-readline';
+import { SerialPort } from 'serialport'
+import { ReadlineParser } from '@serialport/parser-readline'
+import { log, logInfo, logError } from './logger.js'
 
 const port = new SerialPort({
-  path: '/dev/ttyUSB0', // Update if needed
-  baudRate: 9600,
-  autoOpen: false,
-});
+    path: '/dev/ttyUSB0', // TODO: remove hardcoded value, use env
+    baudRate: 9600,
+    autoOpen: false,
+})
 
-const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }))
 
-// Open port once
+// TODO: retrying mechanism
 port.open((err) => {
-  if (err) {
-    console.error('❌ Failed to open port:', err.message);
-  } else {
-    console.log('✅ Serial port open');
-  }
-});
-
-// Optional: Listen to data from Arduino
-parser.on('data', (line) => {
-  console.log(`📥 Arduino says: ${line}`);
-});
-
-// Exported function to write
-export const sendToArduino = (commandStr) => {
-  return new Promise((resolve, reject) => {
-    if (!port.isOpen) {
-      return reject(new Error('Serial port not open'));
+    if (err) {
+        logError('Failed to open port:', err.message)
+    } else {
+        logInfo('Serial port open')
     }
+})
 
-    console.log(`➡️ Sending: ${commandStr}`);
-    port.write(commandStr + '\n', (err) => {
-      if (err) {
-        return reject(err);
-      }
-      port.drain(resolve); // ensure data is fully flushed
-    });
-  });
-};
+parser.on('data', (line) => {
+    log(`📥 Arduino says: ${line}`)
+})
+
+export const sendToArduino = (commandStr) => {
+    return new Promise((resolve, reject) => {
+        if (!port.isOpen) {
+            return reject(new Error('Serial port not open'))
+        }
+
+        logInfo(`Sending command to pump: ${commandStr}`)
+
+        port.write(commandStr + '\n', (err) => {
+            if (err) {
+                return reject(err)
+            }
+            port.drain(resolve) // ensure data is fully flushed
+        })
+    })
+}

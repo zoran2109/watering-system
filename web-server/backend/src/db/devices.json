@@ -4,9 +4,9 @@
         "name": "Water pump",
         "type": "pump",
         "settings": {
-            "manualMode": true,
+            "manualMode": false,
             "wateringDuration": 10000,
-            "wateringHour": 21
+            "wateringHour": 20
         }
     },
     {

@@ -1,9 +1,12 @@
 import express from 'express'
 import { Device, DeviceLog } from '../models/index.js'
-import { Op, Sequelize } from 'sequelize'
 
 const router = express.Router()
 
+/**
+ * @swagger
+ * $ref: './docs/devices/devices.yml#/paths/~1devices/get'
+ */
 router.get('/', async (req, res) => {
     try {
         const devices = await Device.findAll({
@@ -34,6 +37,10 @@ router.get('/', async (req, res) => {
     }
 })
 
+/**
+ * @swagger
+ * $ref: './docs/devices/devices.yml#/paths/~1devices/post'
+ */
 router.post('/', async (req, res) => {
     try {
         const device = await Device.create(req.body)
@@ -43,6 +50,10 @@ router.post('/', async (req, res) => {
     }
 })
 
+/**
+ * @swagger
+ * $ref: './docs/devices/devices.yml#/paths/~1devices/{deviceId}/put'
+ */
 router.put('/:deviceId', async (req, res) => {
     try {
         const [updated] = await Device.update(req.body, {
@@ -58,16 +69,20 @@ router.put('/:deviceId', async (req, res) => {
     }
 })
 
+/**
+ * @swagger
+ * $ref: './docs/devices/devices.yml#/paths/~1devices/{deviceId}/delete'
+ */
 router.delete('/:deviceId', async (req, res) => {
     try {
-        const [updated] = await Device.delete(req.body, {
-            where: { deviceId: req.params.deviceId },
-        })
-        if (deleted) {
-            const device = await Device.findByPk(req.params.deviceId)
-            return res.json(device)
+        const device = await Device.findByPk(req.params.deviceId)
+
+        if (!device) {
+            return res.status(404).json({ error: 'Device not found' })
         }
-        res.status(404).json({ error: 'Device not found' })
+
+        await device.destroy()
+        res.json(device)
     } catch (err) {
         res.status(400).json({ error: err.message })
     }

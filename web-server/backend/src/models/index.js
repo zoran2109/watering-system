@@ -16,7 +16,7 @@ const Device = DeviceModel(sequelize)
 const DeviceLog = DeviceLogModel(sequelize)
 
 Device.hasMany(DeviceLog, { foreignKey: 'deviceId', as: 'logs' })
-Device.hasMany(DeviceLog, { foreignKey: 'deviceId', as: 'latestLog' }) // needed for include alias
+Device.hasMany(DeviceLog, { foreignKey: 'deviceId', as: 'latestLog' })
 DeviceLog.belongsTo(Device, { foreignKey: 'deviceId' })
 
 export { sequelize, Device, DeviceLog }

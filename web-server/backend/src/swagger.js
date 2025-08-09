@@ -14,7 +14,10 @@ const options = {
             version: '1.0.0',
         },
     },
-    apis: [path.join(__dirname, 'routes/*.js')], // Adjust this path
+    apis: [
+        path.join(__dirname, 'routes/*.js'),
+        path.join(__dirname, 'docs/*.yml'),
+    ],
 }
 
 const swaggerSpec = swaggerJsdoc(options)

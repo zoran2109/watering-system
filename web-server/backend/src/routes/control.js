@@ -1,15 +1,15 @@
 import express from 'express'
 import { sendToArduino } from '../helpers/arduino.js'
 import { SERVER_URL, ROUTE_URLS } from '../helpers/constants.js'
+import { logInfo, logError } from '../helpers/logger.js'
 
 const router = express.Router()
 
 /**
  * @swagger
- * /api/control/start-watering:
+ * /start-watering:
  *   post:
- *     summary: Starts watering on a pump
- *     tags: [Control]
+ *     summary: Send a command to Arduino to start watering
  *     requestBody:
  *       required: true
  *       content:
@@ -21,6 +21,36 @@ const router = express.Router()
  *                 type: string
  *               duration:
  *                 type: number
+ *     responses:
+ *       200:
+ *         description: Command sent successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 command:
+ *                   type: string
+ *       400:
+ *         description: Missing fields
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
  */
 router.post('/start-watering', async (req, res) => {
     try {
@@ -35,22 +65,28 @@ router.post('/start-watering', async (req, res) => {
             command = `${cmd} ${duration}`
         }
 
-        await sendToArduino(command).then(
+        await sendToArduino(command)
+
+        // Save log for watering
+        try {
             await fetch(`${SERVER_URL}${ROUTE_URLS.LOGS}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    deviceId: 'arduino-uno-pump', // TODO: remove hard-coded value
+                    deviceId: 'arduino-uno-pump',
                     logData: { ...req.body },
                 }),
-            }).then(console.log('Watering log saved'))
-        )
+            })
+            logInfo('Watering log saved')
+        } catch (err) {
+            logError('Error saving watering log', err)
+        }
 
         res.json({ status: 'sent', command })
     } catch (err) {
-        console.error('🚨 Error sending command:', err.message)
+        logError('Error sending command:', err.message)
         res.status(500).json({ error: err.message })
     }
 })

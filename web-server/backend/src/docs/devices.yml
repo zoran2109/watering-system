@@ -1,0 +1,55 @@
+paths:
+    /devices:
+        get:
+            summary: Get all devices with their latest log
+            tags:
+                - Devices
+            responses:
+                '200':
+                    description: List of devices
+        post:
+            summary: Create a new device
+            tags:
+                - Devices
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+            responses:
+                '200':
+                    description: Success
+    /devices/{deviceId}:
+        put:
+            summary: Update a device
+            tags:
+                - Devices
+            parameters:
+                - in: path
+                  name: deviceId
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+            responses:
+                '200':
+                    description: Success
+        delete:
+            summary: Delete a device
+            tags:
+                - Devices
+            parameters:
+                - in: path
+                  name: deviceId
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: Success

@@ -10,3 +10,5 @@ export const ROUTE_URLS = {
     DEVICES: '/devices',
     START_WATERING: '/start-watering',
 }
+
+export const VITE_DEV_SERVER = 'http://localhost:5173'

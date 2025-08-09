@@ -1,10 +1,11 @@
 import cron from 'node-cron'
 import { Device, DeviceLog } from '../models/index.js'
 import { SERVER_URL, ROUTE_URLS } from '../helpers/constants.js'
+import { log, logInfo, logError } from '../helpers/logger.js'
 import dayjs from 'dayjs'
 
 cron.schedule('*/30 * * * *', async () => {
-    console.log('🔄 Running pump scheduler job...')
+    logInfo('Running pump scheduler job...')
 
     try {
         const pumps = await Device.findAll({
@@ -15,7 +16,7 @@ cron.schedule('*/30 * * * *', async () => {
                 },
             },
         })
-        // console.log('pumps found', pumps)
+
         const now = dayjs()
         const today = now.format('YYYY-MM-DD')
 
@@ -23,14 +24,11 @@ cron.schedule('*/30 * * * *', async () => {
             const { deviceId, settings } = pump
             const { wateringHour, wateringDuration } = settings
 
-            // Skip if wateringHour isn't set
             if (wateringHour === undefined) continue
 
             const isHourPassed = now.hour() >= wateringHour
-
             if (!isHourPassed) continue
 
-            // Check if already watered today
             const lastLog = await DeviceLog.findOne({
                 where: { deviceId },
                 order: [['timestamp', 'DESC']],
@@ -39,25 +37,25 @@ cron.schedule('*/30 * * * *', async () => {
             const alreadyWateredToday =
                 lastLog &&
                 dayjs(lastLog.timestamp).format('YYYY-MM-DD') === today
-            console.log('already watered:', alreadyWateredToday)
-            if (!alreadyWateredToday) {
-                console.log(`🚿 Starting watering for ${deviceId}`)
 
-                await fetch(`${SERVICE_URL}${ROUTE_URLS.START_WATERING}`, {
+            if (!alreadyWateredToday) {
+                logInfo(`Sending watering command to ${deviceId}`)
+
+                await fetch(`${SERVER_URL}${ROUTE_URLS.START_WATERING}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         command: 'WATER',
-                        duration: wateringDuration || 10000,
+                        duration: wateringDuration,
                     }),
                 })
             } else {
-                console.log(`✅ Already watered today: ${deviceId}`)
+                logInfo(`Already watered today: ${deviceId}`)
             }
         }
     } catch (err) {
-        console.error('❌ Error in pump scheduler:', err)
+        logError('Error in pump scheduler:', err)
     }
 })
