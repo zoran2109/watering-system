@@ -6,16 +6,14 @@ This project was created using the Vite CLI command, with React and VanillaJS. T
 
 ## TODO
 
--   clean tailwind classes if possible, remove clutter
--   add slider on modal window component
--   improve buttons (save, start watering) - add animation, etc.
--   disable watering button when watering starts for watering duration?
--   add spinner for loading
--   extract reusable input component
--   improve fetching function and refetching when needed (lib?)
--   add simple JSDoc
+-   clean tailwind classes if possible, remove clutter that doesn't style
+-   improve visuals: buttons (hover, selected pseudoclasses - save for settings, start watering), make modal a bit nicer
+-   disable watering button when watering starts, keep it this way until some defined timeout (watering duration?)
+-   add spinner for loading, sending request
+-   extract reusable input components, basic parts, bigger parts
+-   improve fetching function and refetching when needed (Tanstack Query)
+-   add ESLint config and simple JSDoc
 
--   use SSE to push notifications and refetch data
--   add light theme and theme switching
--   editing sensors
--   add creating/deleting devices
+-   consume SSE to push notifications and refetch data (always open?)
+-   add option for creating/deleting devices
+-   add light theme and theme switching button

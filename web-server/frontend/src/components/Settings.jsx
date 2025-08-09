@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
 import { updateDevice } from '../api/client'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
+import { convertUtcHourToLocal, convertLocalHourToUtc } from '../helpers/utils'
 
 export const Settings = ({ deviceId, initialData, setClose }) => {
     const [formData, setFormData] = useState({
@@ -18,7 +13,7 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
     useEffect(() => {
         setFormData({
             ...initialData,
-            hour: dayjs.utc().hour(initialData.hour).local().hour(),
+            hour: convertUtcHourToLocal(initialData.hour),
         })
     }, [initialData])
 
@@ -28,7 +23,7 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
             settings: {
                 manualMode: formData.manualMode,
                 wateringDuration: formData.duration,
-                wateringHour: dayjs().hour(formData.hour).utc().hour(),
+                wateringHour: convertLocalHourToUtc(formData.hour),
             },
         }
         console.log(deviceId, payload)

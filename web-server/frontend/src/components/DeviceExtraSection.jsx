@@ -1,5 +1,5 @@
 import { startWatering } from '../api/client'
-import { formatTimeFromNow } from '../helpers/utils'
+import { formatTimeFromNow, convertUtcHourToLocal } from '../helpers/utils'
 
 export const PumpExtraSection = ({ pumpData }) => {
     const { settings, lastLog } = pumpData
@@ -30,7 +30,7 @@ export const PumpExtraSection = ({ pumpData }) => {
             ) : (
                 <>
                     <p className="text-sm text-white/60 mb-2">
-                        Watering hour: {wateringHour} h
+                        Watering hour: {convertUtcHourToLocal(wateringHour)} h
                     </p>
                 </>
             )}
