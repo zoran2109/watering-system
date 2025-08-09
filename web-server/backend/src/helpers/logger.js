@@ -5,11 +5,11 @@ export const log = (...args) => {
 }
 
 export const logError = (...args) => {
-    console.error(`${timestamp()} ❌`, ...args)
+    console.error(`[${timestamp()}] ❌`, ...args)
 }
 
 export const logInfo = (...args) => {
-    console.info(`${timestamp()} ℹ️ `, ...args)
+    console.info(`[${timestamp()}] ℹ️ `, ...args)
 }
 
 export const logWarn = (...args) => {

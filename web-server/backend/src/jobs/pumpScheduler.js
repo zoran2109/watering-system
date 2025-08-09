@@ -21,12 +21,15 @@ cron.schedule('*/30 * * * *', async () => {
         const today = now.format('YYYY-MM-DD')
 
         for (const pump of pumps) {
+            logInfo('Pump found', deviceId)
             const { deviceId, settings } = pump
             const { wateringHour, wateringDuration } = settings
 
+            logInfo('Watering hour defined:', wateringHour === undefined)
             if (wateringHour === undefined) continue
 
             const isHourPassed = now.hour() >= wateringHour
+            logInfo('Is hour passed', isHourPassed, now.hour(), wateringHour)
             if (!isHourPassed) continue
 
             const lastLog = await DeviceLog.findOne({
@@ -38,6 +41,13 @@ cron.schedule('*/30 * * * *', async () => {
                 lastLog &&
                 dayjs(lastLog.timestamp).format('YYYY-MM-DD') === today
 
+            logInfo(
+                'Already watered today:',
+                alreadyWateredToday,
+                lastLog,
+                dayjs(lastLog.timestamp).format('YYYY-MM-DD'),
+                today
+            )
             if (!alreadyWateredToday) {
                 logInfo(`Sending watering command to ${deviceId}`)
 
