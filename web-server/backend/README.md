@@ -6,6 +6,7 @@ The backend is made in Vanilla JS using Node.js and Express. Sequalize is used f
 
 ## TODO
 
+-   add absolute imports
 -   add ESLint and JSDoc rule, document code with basic info
 -   add basic Swagger UI docs for all endpoints
 -   redirect to /docs when opening / in prod?

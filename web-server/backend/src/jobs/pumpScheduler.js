@@ -29,13 +29,16 @@ cron.schedule('*/30 * * * *', async () => {
             logInfo('Automated pump found:', deviceId)
             logInfo(
                 `Watering hour for ${deviceId} defined:`,
-                wateringHour === undefined
+                wateringHour === undefined ? 'No. Skipping...' : 'Yes'
             )
 
             if (wateringHour === undefined) continue
 
             const isHourPassed = now.hour() >= wateringHour
-            logInfo('Watering hour passed:', isHourPassed)
+            logInfo(
+                'Watering hour passed:',
+                isHourPassed ? 'Yes' : 'No. Skipping...'
+            )
             if (!isHourPassed) continue
 
             const lastLog = await DeviceLog.findOne({
