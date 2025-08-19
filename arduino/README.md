@@ -1,5 +1,11 @@
 # Arduino code
 
+## TODO
+- Add diagrams for electronic assembly that will complement the code + code for nodemcu/wifi/mqtt
+1. pump on uno diagram
+2. pump with nodemcu (with wifi connection + mqtt) + diagram (similar to uno)
+3. sensor with batteries diagram + notes why this isn't optimal
+
 ## Folders
 - pump - code for Arduino connected to pump and relay that is controlled from Raspberry Pi
 - sensors - code for sensors

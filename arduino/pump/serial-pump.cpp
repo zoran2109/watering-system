@@ -1,4 +1,6 @@
-#define RELAY_PIN 7  // safer than D0
+// This code should be copied into Arduino IDE and exported to Arduino
+#define RELAY_PIN D7 // Use 7 for Uno, D7 (or 13 for GPIO number) for NODEMCU
+#define MAX_WATERING_DURATION 180000UL // Max duration for watering is 3 min
 
 void setup() {
   pinMode(RELAY_PIN, OUTPUT);
@@ -13,7 +15,8 @@ void loop() {
     command.trim();
 
     if (command.startsWith("WATER")) {
-      int duration = command.substring(6).toInt();
+      long unsigned int wantedDuration = command.substring(6).toInt();
+      long int duration = min(wantedDuration, MAX_WATERING_DURATION);
       Serial.print("💧 Watering for ");
       Serial.print(duration);
       Serial.println("ms");

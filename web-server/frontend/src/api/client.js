@@ -2,7 +2,7 @@ import { wateringPumpApi, deviceApi, deviceLogsApi } from '../helpers/constants'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const startWatering = async (duration) => {
+export const startWatering = async (deviceId, duration) => {
     const response = await fetch(wateringPumpApi, {
         method: 'POST',
         headers: {
@@ -11,6 +11,7 @@ export const startWatering = async (duration) => {
         body: JSON.stringify({
             command: 'WATER',
             duration,
+            deviceId,
         }),
     })
 

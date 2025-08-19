@@ -1,0 +1,47 @@
+paths:
+    /start-watering:
+        post:
+            summary: Send a command to Arduino to start watering
+            tags:
+                - Control
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                command:
+                                    type: string
+                                duration:
+                                    type: number
+            responses:
+                200:
+                    description: Command sent successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    status:
+                                        type: string
+                                    command:
+                                        type: string
+                400:
+                    description: Missing fields
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                500:
+                    description: Server error
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string

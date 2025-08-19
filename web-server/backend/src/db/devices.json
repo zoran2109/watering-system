@@ -1,18 +1,14 @@
 [
     {
-        "deviceId": "arduino-uno-pump",
+        "deviceId": "arduino-pump",
         "name": "Water pump",
         "type": "pump",
         "settings": {
-            "manualMode": false,
+            "manualMode": true,
             "wateringDuration": 10000,
-            "wateringHour": 20
+            "wateringHour": 20,
+            "communicationType": "mqtt",
+            "connectionAddress": null
         }
-    },
-    {
-        "deviceId": "sensor-tomato",
-        "name": "Tomato sensor",
-        "type": "sensor",
-        "settings": {}
     }
 ]

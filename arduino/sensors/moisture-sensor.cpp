@@ -59,7 +59,10 @@ void setup() {
     http.begin(client, serverUrl);
     http.addHeader("Content-Type", "application/json");
 
-    String json = "{\"deviceId\":\"" + deviceId + "\",\"logData\":{\"moisture\":" + String(moisture) + "}}";
+    String json = "{\"deviceId\":\"" + deviceId +
+                  "\",\"logData\":{\"type\":\"sensor\",\"success\":true,\"value\":" +
+                  String(moisture) + "}}";
+
 
     int httpCode = http.POST(json);
     String response = http.getString();

@@ -12,3 +12,14 @@ export const ROUTE_URLS = {
 }
 
 export const VITE_DEV_SERVER = 'http://localhost:5173'
+
+export const PUMP_COMMUNICATION_TYPES = {
+    MQTT: 'mqtt',
+    SERIAL: 'serial',
+    WIFI: 'wifi',
+}
+
+export const DEVICE_TYPES = {
+    PUMP: 'pump',
+    SENSOR: 'sensor',
+}

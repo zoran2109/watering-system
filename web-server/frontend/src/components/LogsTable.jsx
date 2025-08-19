@@ -25,9 +25,9 @@ export const LogsTable = ({ logs }) => (
                             {formatTimeForLogs(log.timestamp)}
                         </td>
                         <td className="px-4 py-2 border-b border-border">
-                            {log.logData.moisture !== undefined
-                                ? `Moisture: ${log.logData.moisture}`
-                                : `Watered: ${log.logData.duration} ms`}
+                            {log.logData.type === 'sensor'
+                                ? `Moisture: ${log.logData.value}`
+                                : `Watered: ${log.logData.value} ms`}
                         </td>
                     </tr>
                 ))

@@ -1,4 +1,4 @@
-import { Device } from '../models/index.js'
+import { Device } from './models/index.js'
 import devicesJson from './devices.json' assert { type: 'json' }
 
 export const seedDevices = async () => {

@@ -24,6 +24,8 @@ export const Settings = ({ deviceId, initialData, setClose }) => {
                 manualMode: formData.manualMode,
                 wateringDuration: formData.duration,
                 wateringHour: convertLocalHourToUtc(formData.hour),
+                communicationType: 'mqtt',
+                connectionAddress: null,
             },
         }
         console.log(deviceId, payload)

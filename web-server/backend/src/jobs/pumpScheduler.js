@@ -1,8 +1,9 @@
 import cron from 'node-cron'
-import { Device, DeviceLog } from '../models/index.js'
+import { Device, DeviceLog } from '../db/models/index.js'
 import { SERVER_URL, ROUTE_URLS } from '../helpers/constants.js'
 import { logInfo, logError } from '../helpers/logger.js'
 import dayjs from 'dayjs'
+import { StrategyFactory } from '../handlers/watering/StrategyFactory.js'
 
 cron.schedule('*/30 * * * *', async () => {
     logInfo('Running pump scheduler job...')
@@ -53,16 +54,9 @@ cron.schedule('*/30 * * * *', async () => {
             if (!alreadyWateredToday) {
                 logInfo(`Sending watering command to ${deviceId}`)
 
-                await fetch(`${SERVER_URL}${ROUTE_URLS.START_WATERING}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        command: 'WATER',
-                        duration: wateringDuration,
-                    }),
-                })
+                await StrategyFactory.getStrategy(
+                    settings.communicationType
+                ).send(req.body)
             } else {
                 logInfo(`Already watered today: ${deviceId}`)
             }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { Device, DeviceLog } from '../models/index.js'
+import { Device, DeviceLog } from '../db/models/index.js'
 
 const router = express.Router()
 

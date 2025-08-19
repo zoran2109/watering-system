@@ -6,13 +6,13 @@ import {
     VITE_DEV_SERVER,
     SERVER_URL,
 } from './helpers/constants.js'
-import { sequelize } from './models/index.js'
+import { sequelize } from './db/models/index.js'
 import { seedDevices } from './db/seedDevices.js'
 import devicesRouter from './routes/devices.js'
 import logsRouter from './routes/logs.js'
 import controlRouter from './routes/control.js'
 import cors from 'cors'
-import { setupSwagger } from './swagger.js'
+import { setupSwagger } from './docs/swagger.js'
 import {
     logInfo,
     logError,

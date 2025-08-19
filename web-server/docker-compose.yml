@@ -1,18 +1,27 @@
 version: '3.8'
 
 services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
   backend:
     build: ./backend
     restart: unless-stopped
     ports:
       - "3000:3000"
+    privileged: true
     volumes:
       - ./backend/data:/app/data
-    devices:
-      - "/dev/ttyUSB0:/dev/ttyUSB0"
-      - "/dev/ttyUSB0:/dev/ttyUSB1"
     environment:
       - NODE_ENV=development
+      - MQTT_BROKER_URL=mqtt://mqtt-broker:1883
 
   frontend:
     build: ./frontend
