@@ -45,6 +45,10 @@ app.use(ROUTE_URLS.LOGS, logsRouter)
 app.use('/', controlRouter)
 app.use(errorLogger)
 
+app.get('/', (req, res) => {
+    res.redirect('/docs')
+})
+
 sequelize.sync().then(async () => {
     try {
         await seedDevices()

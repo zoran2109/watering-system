@@ -1,6 +1,6 @@
 import { SerialPort } from 'serialport'
 import { ReadlineParser } from '@serialport/parser-readline'
-import { logInfo, logError } from '../../helpers/logger.js'
+import { logInfo } from '../../helpers/logger.js'
 import { WateringStrategy } from './WateringStrategy.js'
 import { jobMonitor } from '../../jobs/JobMonitor.js'
 

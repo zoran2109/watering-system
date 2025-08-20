@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 export const PORT = process.env.PORT || 3000
 
 /**
@@ -23,3 +24,5 @@ export const DEVICE_TYPES = {
     PUMP: 'pump',
     SENSOR: 'sensor',
 }
+
+export const MAX_JOB_DURATION_MS = 3 * 60 * 1000 + 200 // 200 ms addition

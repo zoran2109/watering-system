@@ -1,6 +1,5 @@
 import cron from 'node-cron'
 import { Device, DeviceLog } from '../db/models/index.js'
-import { SERVER_URL, ROUTE_URLS } from '../helpers/constants.js'
 import { logInfo, logError } from '../helpers/logger.js'
 import dayjs from 'dayjs'
 import { StrategyFactory } from '../handlers/watering/StrategyFactory.js'
@@ -54,9 +53,14 @@ cron.schedule('*/30 * * * *', async () => {
             if (!alreadyWateredToday) {
                 logInfo(`Sending watering command to ${deviceId}`)
 
+                const command = {
+                    command: 'WATER',
+                    duration: wateringDuration,
+                    deviceId,
+                }
                 await StrategyFactory.getStrategy(
                     settings.communicationType
-                ).send(req.body)
+                ).send(command)
             } else {
                 logInfo(`Already watered today: ${deviceId}`)
             }

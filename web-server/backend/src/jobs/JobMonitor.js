@@ -1,18 +1,19 @@
 import { mqttBus } from '../mqtt/mqttClient.js'
 import { DeviceLog } from '../db/models/index.js'
 import { logInfo, logError } from '../helpers/logger.js'
-import { z } from 'zod'
+import { MqttPumpStatusMessage } from '../api-models/mqttMessageModels.js'
+import { MAX_JOB_DURATION_MS } from '../helpers/constants.js'
 
-const MAX_JOB_DURATION_MS = 3 * 60 * 1000 + 200 // 3 minutes safety cap
-
-const PumpStatusSchema = z.object({
-    deviceId: z.string(),
-    type: z.literal('pump'),
-    success: z.boolean(),
-    message: z.string(),
-    value: z.number().optional(),
-})
-
+/**
+ * Class that monitors status of (watering) jobs:
+ * - prevents starting another job on the same host where the job is currently running
+ * - saves log after job ends
+ * - TODO: sends SSE with updates
+ *
+ * How it works:
+ * - for MQTT jobs, it listens for new events and updates the state
+ * - for Serial and Wifi strategy call jobStarted and jobEnded methods to update the state
+ */
 class JobMonitor {
     constructor() {
         this.jobs = new Map() // deviceId -> { inProgress, startedAt, timeout }
@@ -20,7 +21,7 @@ class JobMonitor {
         mqttBus.on('pump/status', (raw) => {
             try {
                 const msg = JSON.parse(raw)
-                const parsed = PumpStatusSchema.parse(msg)
+                const parsed = MqttPumpStatusMessage.parse(msg)
                 this.handlePumpStatus(parsed)
             } catch (err) {
                 logError('Invalid pump/status message', raw, err)
@@ -34,13 +35,11 @@ class JobMonitor {
         }
 
         const startedAt = new Date()
-        logInfo(`🌱 Job started for ${deviceId}`)
+        logInfo(`Job started for ${deviceId}`)
 
-        // watchdog: end automatically after MAX_JOB_DURATION_MS
+        // End automatically after MAX_JOB_DURATION_MS
         const timeout = setTimeout(() => {
-            logError(
-                `⏱️ Job for ${deviceId} exceeded max duration, auto-ending`
-            )
+            logError(`⏱Job for ${deviceId} exceeded max duration, auto-ending`)
             this.jobEnded(
                 deviceId,
                 false,
@@ -55,7 +54,7 @@ class JobMonitor {
     async jobEnded(deviceId, success, value = null, message = null) {
         const existing = this.jobs.get(deviceId) || {}
 
-        // cancel watchdog if still running
+        // Cancel if timeout is still running
         if (existing.timeout) {
             clearTimeout(existing.timeout)
         }
@@ -80,9 +79,9 @@ class JobMonitor {
                     endedAt: new Date(),
                 },
             })
-            logInfo(`💾 Watering log saved for ${deviceId}`)
+            logInfo(`Watering ended - log saved for ${deviceId}`)
         } catch (err) {
-            logError('Error saving watering log', err)
+            logError('Error saving the watering log', err)
         }
     }
 
@@ -94,13 +93,13 @@ class JobMonitor {
             const elapsed = Date.now() - job.startedAt.getTime()
             if (elapsed > MAX_JOB_DURATION_MS) {
                 logError(
-                    `⚠️ Job for ${deviceId} exceeded duration during isBusy check, auto-ending`
+                    `Job for ${deviceId} exceeded max timeout duration, auto-ending`
                 )
                 this.jobEnded(
                     deviceId,
                     false,
                     null,
-                    'Timeout - auto closed on isBusy check'
+                    'Timeout - auto-closed on isBusy check'
                 )
                 return false
             }

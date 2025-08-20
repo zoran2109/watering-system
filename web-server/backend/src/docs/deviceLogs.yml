@@ -1,0 +1,33 @@
+paths:
+    /logs:
+        get:
+            summary: Gets device logs
+            tags:
+                - Logs
+            parameters:
+                - in: query
+                  name: deviceId
+                  schema:
+                      type: string
+                  description: Device ID for which logs should be fetched
+            responses:
+                '200':
+                    description: List of logs
+        post:
+            summary: Create a log
+            tags:
+                - Logs
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                deviceId:
+                                    type: string
+                                logData:
+                                    type: object
+            responses:
+                '200':
+                    description: Success

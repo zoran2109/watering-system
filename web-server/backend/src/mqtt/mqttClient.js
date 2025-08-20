@@ -1,9 +1,10 @@
 import mqtt from 'mqtt'
 import { EventEmitter } from 'events'
-import { logInfo, logError } from '../helpers/logger.js'
+import { logInfo } from '../helpers/logger.js'
 
 export const mqttBus = new EventEmitter()
 
+// eslint-disable-next-line no-undef
 const client = mqtt.connect(process.env.MQTT_BROKER_URL || 'mqtt://localhost', {
     clientId: 'backend',
     clean: true,
@@ -11,7 +12,7 @@ const client = mqtt.connect(process.env.MQTT_BROKER_URL || 'mqtt://localhost', {
 
 client.on('connect', () => {
     logInfo('MQTT connected')
-    client.subscribe('#') // listen to all topics (or whitelist)
+    client.subscribe('#')
 })
 
 client.on('message', (topic, message) => {

@@ -3,10 +3,6 @@ import { Device, DeviceLog } from '../db/models/index.js'
 
 const router = express.Router()
 
-/**
- * @swagger
- * $ref: './docs/devices/devices.yml#/paths/~1devices/get'
- */
 router.get('/', async (req, res) => {
     try {
         const devices = await Device.findAll({
@@ -37,10 +33,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-/**
- * @swagger
- * $ref: './docs/devices/devices.yml#/paths/~1devices/post'
- */
 router.post('/', async (req, res) => {
     try {
         const device = await Device.create(req.body)
@@ -50,10 +42,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-/**
- * @swagger
- * $ref: './docs/devices/devices.yml#/paths/~1devices/{deviceId}/put'
- */
 router.put('/:deviceId', async (req, res) => {
     try {
         const [updated] = await Device.update(req.body, {
@@ -69,10 +57,6 @@ router.put('/:deviceId', async (req, res) => {
     }
 })
 
-/**
- * @swagger
- * $ref: './docs/devices/devices.yml#/paths/~1devices/{deviceId}/delete'
- */
 router.delete('/:deviceId', async (req, res) => {
     try {
         const device = await Device.findByPk(req.params.deviceId)
