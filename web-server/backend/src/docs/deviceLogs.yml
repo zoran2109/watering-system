@@ -9,7 +9,7 @@ paths:
                   name: deviceId
                   schema:
                       type: string
-                  description: Device ID for which logs should be fetched
+                  description: Device ID for whose logs should be fetched
             responses:
                 '200':
                     description: List of logs
