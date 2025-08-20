@@ -3,9 +3,9 @@
 This repository contains code and instructions for creating small automated watering system controlled by Raspberry Pi and Arduino/ESP8266. It's a hobby project that I started with some donated stuff (Raspberry Pi 3B, Arduino, pump, relay, etc. - thanks to donors!) and what I had at the disposal somewhat directed the whole project. The idea was to make the Rasbperry Pi a place of centralized control of the watering system and to build this solution from ground up, not relying on existing ones. Pump for watering would be controlled from Arduino that would await for instruction from Raspberry Pi.
 
 ## Content
-1. [High-level solution](#1.-high-level-solution)
-2. [Repository overview](#2.-repository-overview)
-3. [Getting started](#3.-getting-started)
+1. [High-level solution](#1-high-level-solution)
+2. [Repository overview](#2-repository-overview)
+3. [Getting started](#3-getting-started)
 
 ## 1. High-level solution
 1. Arduino/ESP8266 controls water pump through relay.

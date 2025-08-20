@@ -7,15 +7,14 @@ The backend is made in Vanilla JS using Node.js and Express. Sequalize is used f
 ## TODO
 
 1. Add zod log schema
-2. put validation to endpoints (control, device, deviceLogs)
+2. put zod model validation to endpoints (control, device, deviceLogs)
 3. add conditional to start-watering endpoint to start watering only if mode is MANUAL
 
 -   add absolute imports
 -   improve ESlint
 -   automate generation of Swagger?
 -   make Swagger UI work in prod?
--   redirect to /docs when opening '/' in prod
 -   add unified response schema as middleware (data, meta, error)
--   ensure no data is deleted during rebuild of Docker container?
+-   ensure no data (DB) is deleted during rebuild of Docker container?
 -   introduce SSE for real-time notifications to client when watering is done or something is stored to the database
 -   introduce Typescript
