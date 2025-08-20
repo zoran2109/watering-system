@@ -1,23 +1,27 @@
 # Terrace watering system
 
-TBD - This project and README are currently incomplete.
+This repository contains code and instructions for creating small automated watering system controlled by Raspberry Pi and Arduino/ESP8266. It's a hobby project that I started with some donated stuff (Raspberry Pi 3B, Arduino, pump, relay, etc. - thanks to donors!) and what I had at the disposal somewhat directed the whole project. The idea was to make the Rasbperry Pi a place of centralized control of the watering system and to build this solution from ground up, not relying on existing ones. Pump for watering would be controlled from Arduino that would await for instruction from Raspberry Pi.
 
-## High-level solution
-1. Arduino controls relay and water pump.
-2. Few ESP8266s will be used to power sensors that will read soil moisture.
-3. Raspberry Pi will host small web server with watering dashboard that will show moisture data and allow watering control that can either be automatic or manual.
-4. Arduino will be connected to Raspberry Pi's USB port and it will wait for watering instructions.
-5. Sensors will send moisture data to Raspberry Pi via REST API calls on local network.
+## Content
+1. [High-level solution](#1.-high-level-solution)
+2. [Repository overview](#2.-repository-overview)
+3. [Getting started](#3.-getting-started)
 
-## Folder structure
-- arduino - code for sensors and pump with instructions
+## 1. High-level solution
+1. Arduino/ESP8266 controls water pump through relay.
+2. Raspberry Pi hosts web server with watering dashboard that shows logs and allows control of watering, either automatically or manually.
+3. Communication between Arduino/ESP8266 and Raspberry Pi is done via serial port, by hosting servers over LAN or by publishing events on MQTT broker.
+
+## 2. Repository overview
+- arduino - code for sensors and pumps with instructions how to set them up on Arduino/ESP8266
+- web-server - web-server consisting of Node.js + Express + SQLite + Mosquitto backend and Vite + Vanilla JS + React frontend. Has instructions to configure headless Raspberry Pi with dockerized server
+- deploy - contains small server code, scripts and instructions to set-up automated redeployment of web-server after new commit is pushed
 - schemas - diagrams for arduino controlled pump and sensors and sketches for hose setup for watering with instructions
-- web-server - web-server consisting of Node.js + Express + SQLite backend and Vite + Vanilla JS + React frontend. Has instructions to configure headless Raspberry Pi with dockerized server
 - overview - shows my implementation of the whole watering system with list of parts used, additional considerations and so on
 
-## How to start
-You can either use this as an inspiration or base for your project or you can follow these steps:
-1. Form a list to buy parts according to your needs (overview)
-2. Upload arduino code to microcontrollers
-3. Follow schematics and assemble you watering system with sensors
-4. Set Raspberry Pi as remote server that controls the whole flow
+## 3. Getting started
+This project provides materials that can be used as an inspiration or base for a new project but it also documents how to set up the whole watering system from scratch. To begin, here's suggested order:
+1. Form a list of needed parts according to your needs
+2. Choose and upload arduino code to microcontrollers
+3. Follow schemas and assemble your watering system
+4. Set remote server to control the whole flow

@@ -6,6 +6,9 @@ This project was created using the Vite CLI command, with React and VanillaJS. T
 
 ## TODO
 
+1. extend settings section for pump (communication type, connection address)
+2.
+
 -   add absolute imports
 -   clean tailwind classes if possible, remove clutter that doesn't style
 -   improve visuals: buttons (hover, selected pseudoclasses - save for settings, start watering), make modal a bit nicer (box model)
