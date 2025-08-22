@@ -1,28 +1,26 @@
-// ESP8266 + MQTT Pump Controller with JSON messages (non-blocking)
-// ---------------------------------------------------------------
-
+// This code should be copied to Arduino IDE and exported to Arduino
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 
-#define RELAY_PIN D7                   // GPIO13 for NodeMCU D7
+#define RELAY_PIN D7                   // GPIO13 for NodeMCU D7, can be changed
 #define MAX_WATERING_DURATION 180000UL // 3 minutes in ms
 
-// WiFi credentials
+// WiFi credentials - needs to be set
 const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
 // MQTT broker settings
-const char* mqtt_server   = "192.168.100.3"; // MQTT broker IP
+const char* mqtt_server   = "192.168.100.x"; // MQTT broker IP - It will be the same as IP of watering application
 const int   mqtt_port     = 1883;
-const char* mqtt_client_id = "arduino-pump"; // unique per device
+const char* mqtt_client_id = "arduino-pump"; // This ID should match the ID of a device saved in watering application
 const char* topic_command  = "pump/water";
 const char* topic_status   = "pump/status";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-// State tracking
+// Watering state
 bool wateringInProgress = false;
 unsigned long wateringStart    = 0;
 unsigned long wateringDuration = 0;

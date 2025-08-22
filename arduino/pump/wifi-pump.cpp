@@ -6,6 +6,7 @@
 #define RELAY_PIN D7
 #define MAX_WATERING_DURATION 180000UL // Max 3 minutes
 
+// Needs to be set
 const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
@@ -31,7 +32,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   // Start mDNS responder
-  if (MDNS.begin("arduino-pump")) { // <-- This makes http://my-pump.local work
+  if (MDNS.begin("arduino-pump")) { // <-- MagicDNS: http://arduino-pump.local
     Serial.println("mDNS responder started: http://arduino-pump.local/");
   } else {
     Serial.println("Error starting mDNS");

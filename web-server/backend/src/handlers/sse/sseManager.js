@@ -1,4 +1,4 @@
-// TODO
+// TODO: introduce SSE to service
 let clients = []
 
 export function addClient(res) {

@@ -2,6 +2,9 @@ import mqtt from 'mqtt'
 import { EventEmitter } from 'events'
 import { logInfo } from '../helpers/logger.js'
 
+/**
+ * Used in the rest of the code to wait events from specific topic with callback function
+ */
 export const mqttBus = new EventEmitter()
 
 // eslint-disable-next-line no-undef

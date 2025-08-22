@@ -5,6 +5,7 @@ import { PUMP_COMMUNICATION_TYPES } from '../../helpers/constants.js'
 
 let mqttStrategyInstance = null
 
+/** Factory that returns appropriate instance of watering strategy class based on provided type.*/
 export class StrategyFactory {
     static getStrategy(type, config = {}) {
         switch (type) {

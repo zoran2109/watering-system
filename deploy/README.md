@@ -16,11 +16,11 @@ Making changes to web-server running in docker-compose on Rasperry Pi frequently
 To make web server automatically redeploy on RPi after latest changes in the repo follow these steps:
 - **Prerequisite: Tailscale installed on Rasperry Pi**
 1. SSH into RPi and move to **/home/repo/watering-system/deploy** folder
-2. Set RPi user as env variable: **export USERNAME=<RPI_USERNAME>**
-3. Make deploy.sh executable if it isn't (it will be used to deploy new changes later): **sudo chmod +x deploy.sh**
-4. Make setup_webhook.sh executable: **sudo chmod +x /home/repo/watering-system/deploy/setup_webhook.sh** and run it.
-5. Enable tailscale funnel: **tailscale funnel**
-6. The webhook server should now run on port 9000. Expose the server to the internet with tailscale: **sudo tailscale funnel --https 9000 -bg 127.0.0.1:9000**
+2. Set RPi user as env variable: `export USERNAME=<RPI_USERNAME>`
+3. Make deploy.sh executable if it isn't already (it will be used to deploy new changes later): `sudo chmod +x deploy.sh`
+4. Make setup_webhook.sh executable: `sudo chmod +x /home/repo/watering-system/deploy/setup_webhook.sh` and run it.
+5. Enable tailscale funnel: `tailscale funnel`
+6. The webhook server should now run on port 9000. Expose the server to the internet with tailscale: `sudo tailscale funnel --https 9000 -bg 127.0.0.1:9000`
 7. Add GitHub Webhook that will ping the webhook server - go to GitHub repo → Settings → Webhooks → Add Webhook:
 - Payload URL: **https://<your-pi>.ts.net:9000/**
 - Content type: **application/json**

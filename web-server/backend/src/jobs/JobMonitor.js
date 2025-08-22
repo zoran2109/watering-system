@@ -5,7 +5,7 @@ import { MqttPumpStatusMessage } from '../api-models/mqttMessageModels.js'
 import { MAX_JOB_DURATION_MS } from '../helpers/constants.js'
 
 /**
- * Class that monitors status of (watering) jobs:
+ * Singleton class that stores and monitors status of (watering) jobs:
  * - prevents starting another job on the same host where the job is currently running
  * - saves log after job ends
  * - TODO: sends SSE with updates

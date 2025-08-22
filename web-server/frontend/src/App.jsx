@@ -1,15 +1,22 @@
 import { useState, useEffect } from 'react'
-import { DeviceCard } from './components/DeviceCard'
-import { UIIconPaths } from './assets/icons'
+import Devices from './sections/Devices'
+import Header from './sections/Header'
 import Modal from './components/Modal'
 import { fetchDevices, fetchDeviceLogs } from './api/client'
-import {
-    PumpExtraSection,
-    SensorExtraSection,
-} from './components/DeviceExtraSection'
 import { LogsTable } from './components/LogsTable'
 import { Settings } from './components/Settings'
 import { ToastContainer } from 'react-toastify'
+
+/*
+ * TO DO:
+ *  - useAppState - app state using zustand
+ *      - modalView and modal state
+ *
+ *  - useModalView - sets and clears / opens and closes modal
+ *  - useDevices, useRefetchDevices - handles fetching and refetching of centralized state
+ *
+ *  - <Loader /> if there is ongoing fetching (import { useIsFetching, useIsMutating } from "@tanstack/react-query";)
+ */
 
 const App = () => {
     const [devices, setDevices] = useState([])
@@ -52,33 +59,13 @@ const App = () => {
     }
     return (
         <>
-            <header className="flex items-center gap-3 p-4">
-                <img
-                    src={UIIconPaths.plant}
-                    alt="Plant Icon"
-                    className="h-8 w-8"
-                />
-                <h1 className="text-2xl font-bold text-text-main">
-                    Watering Dashboard
-                </h1>
-            </header>
+            <Header />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-                {devices.map((device) => (
-                    <DeviceCard
-                        key={device.deviceId}
-                        data={device}
-                        onLogsClick={openLogs}
-                        onSettingsClick={openSettings}
-                    >
-                        {device.type === 'pump' ? (
-                            <PumpExtraSection pumpData={device} />
-                        ) : (
-                            <SensorExtraSection sensorData={device} />
-                        )}
-                    </DeviceCard>
-                ))}
-            </div>
+            <Devices
+                devices={devices}
+                openSettings={openSettings}
+                openLogs={openLogs}
+            />
 
             <Modal open={Boolean(modalView)} onClose={() => setModalView(null)}>
                 {modalView}
