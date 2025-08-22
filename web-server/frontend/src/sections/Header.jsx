@@ -1,4 +1,4 @@
-import { UIIconPaths } from './assets/icons'
+import { UIIconPaths } from '../assets/icons'
 
 const Header = () => (
     <header className="flex items-center gap-3 p-4">

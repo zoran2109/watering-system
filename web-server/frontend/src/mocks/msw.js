@@ -1,6 +1,6 @@
 import { setupWorker } from 'msw/browser'
 import { handlers } from './handlers.js'
-import { isProd } from './app.config.js'
+import { isProd } from '../app.config.js'
 
 const worker = setupWorker(...handlers)
 

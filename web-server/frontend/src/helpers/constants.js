@@ -1,8 +1,8 @@
-export const wateringPumpApiUrlUrl = '/api/start-watering'
+export const wateringPumpApiUrl = '/api/start-watering'
 
-export const deviceApiUrlUrl = '/api/devices'
+export const deviceApiUrl = '/api/devices'
 
-export const deviceLogsApiUrlUrl = '/api/logs'
+export const deviceLogsApiUrl = '/api/logs'
 
 export const DEVICE_TYPES = {
     PUMP: 'pump',
