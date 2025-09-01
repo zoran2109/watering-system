@@ -52,15 +52,14 @@ When you turn on RPi for the first time, you should wait few minutes for OS to b
 6. Server's frontend should be accessible on **http://localhost** in the RPi and on **http://<RPI_STATIC_IP_ADDRESS** over LAN.
 
 ### Setting Tailscale for remote access to web server (OPTIONAL)
-To set remote access with Tailscale follow these steps:
-    1. Run `sudo apt update && sudo apt upgrade -y`
-    2. Install tailscale with `curl -fsSL https://tailscale.com/install.sh | sh`
-    3. When tailscale is installed, run `sudo tailscale up` to authenticate to tailscale
-    4. Tailscale will give a link that needs to be opened to authenticate
-    5. After succesful authentication, add devices (machines) to tailscale that you want to give access to the server:
+1. Run `sudo apt update && sudo apt upgrade -y`
+2. Install tailscale with `curl -fsSL https://tailscale.com/install.sh | sh`
+3. When tailscale is installed, run `sudo tailscale up` to authenticate to tailscale
+4. Tailscale will give a link that needs to be opened to authenticate
+5. After succesful authentication, add devices (machines) to tailscale that you want to give access to the server:
     - this requires installing tailscale on additional devices and authenticating with the same username - alternative is to this tailnet approach is exposing the server to the whole internet with [tailscale funnel](https://tailscale.com/kb/1223/funnel)
-    6. Run the following command to expose the server (assuming the docker-compose is up) to other devices in the tailnet: `sudo tailscale serve -bg --https=80 127.0.0.1:80`
-    7. Use the provided url to access the app remotely
+6. Run the following command to expose the server (assuming the docker-compose is up) to other devices in the tailnet: `sudo tailscale serve -bg --https=80 127.0.0.1:80`
+7. Use the provided url to access the app remotely
 
 ### Setting GitHub Actions to automate deployment (OPTIONAL)
 If you want automated redeployment of the web server when changes are pushed to the repo:
