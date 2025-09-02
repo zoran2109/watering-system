@@ -11,14 +11,17 @@ The mentioned situation was the catalyst for this project although I considered 
 Since I was going to use what I had, first step was straightforward - I needed to investigate how to wire Arduino with sensor and with pump and relay to see if the electronic parts work. This was fairly simple and everything worked fine. Arduino only needs to control the current that goes to pump via relay and I needed to use 12V DC adapter because pump demanded that much power.
 
 ![Arduino controlled pump simple diagram](../schemas/diagrams/pump-diagram.png)
+
 *High-level diagram showing how arduino works with relay and the pump*
 
 The code on Arduino needed to wait after I decide on communication with the web server. So I started thinking about web server. I came up with the following idea:
 
 ![Whole flow high-level diagram](images/high-level-communication.png)
+
 *High-level diagram showing communication between frontend, backend and pump*
 
 ![Database tables for the service](../web-server/images/database-tables.png)
+
 *Data that will be stored in the database and shown on the dashboard*
 
 1. Service will store devices (with settings) and device logs
@@ -33,6 +36,7 @@ I wanted to make the initial setup and updates of the application quick and easy
 - There will be simple CD (continuous delivery) flow, so when new commit is pushed to repository the application is redeployed with the newest changes
 
 ![Simple CD diagram](../deploy/cd-flow.png)
+
 *Diagram for CD flow on Raspberry Pi*
 
 Initial idea proved to be overwhelming - it was too much to do all at once. Also it was over-engineering something that could be simple. So I decided to make the server that will communicate via serial port with Arduino. Eventually, I had some kind of MVP that was starting pump by clicking button on frontend. But afterwards I decided not to keep Raspberry Pi on the terrace connected via USB with pump because of the high temperature. So I gradually built towards initial idea. I decided to treat the whole thing as playground - although I didn't need to make things scalable and automated, it was a way to practice new skills and learn something. The web server part is still work in progress and it will probably stay that way - but I got to the point where I can check most of the initial idea 'boxes' (SSE communication is still TODO).
@@ -46,6 +50,7 @@ On the other hand, some ideas that I had in the process proved to be dead ends. 
 Although the web app was ready for some time, I was able to make the watering work only few days before vacation because I was waiting for hoses and hose splitters. Somewhat unexpectedly, smaller diameter hoses were hard to get delivered on short notice. However, I did it. It worked great 8)
 
 ![Screenshot of watering dashboard](../web-server/images/watering-dashboard-screenshot.png)
+
 *Dashboard showing the pump with pump device*
 
 ## Further thoughts
