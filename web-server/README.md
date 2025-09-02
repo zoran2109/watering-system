@@ -5,6 +5,13 @@ The /web-server folder contains web application that functions as a dashboard fo
 This readme explains the content of the /web-server folder and steps needed to host the web application on Raspberry Pi.
 Although running the app on Raspberry was intended usage, you can run the application anywhere by running install.sh script.
 
+## Contents - TODO
+
+## High level overview - TODO
+![Database table organization](images/database-tables.png)
+
+![Frontend dashboard screenshot](images/watering-dashboard-screenshot.png)
+
 ## Content of /web-server
 - **/frontend** - UI for dashboard written in React + Vite, for more info check [Frontend README](frontend/README.md)
 - **/backend** - backend for dashboard app that controls watering written in Node.js + Express, for more info check [Backend README](backend/README.md)

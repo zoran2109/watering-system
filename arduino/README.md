@@ -1,9 +1,5 @@
 # Arduino code
 
-## TODO
-- Explain 'pump options' and sensor code
-- Additional option - code for Arduino that doesn't rely on Raspberry
-
 ## Folders
 - **/pump** - code for Arduino connected to the pump and relay that awaits for instructions from Raspberry Pi
 - **/sensors** - code for sensors

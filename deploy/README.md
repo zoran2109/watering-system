@@ -3,6 +3,9 @@
 Making changes to web-server running in docker-compose on Rasperry Pi frequently demands SSH-ing into Rasbperry, pulling the latest changes and rebuilding the Docker containers. This folder contains simple solution to do the mentioned things automatically.
 
 ## CD solution overview
+
+![Diagram showing simple CD flow](cd-flow.png)
+
 1. Server on Raspberry (outside Docker container) exposed to the internet waits for information that there are new changes in the repo
 2. Github hook is configured to call endpoint on Rasbperry server when new commit is pushed
 3. Rasbperry Pi server starts the script that pulls the changes and rebuilds the containers
