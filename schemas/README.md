@@ -1,5 +1,10 @@
 # Watering system schemas
 
+## Contents
+1. [Arduino controlled pump](#arduino-controlled-pump)
+2. [Moisture sensor](#moisture-sensor)
+3. [Hose organization](#hose-organization)
+
 ## Arduino controlled pump
 
 ### How it works
@@ -23,10 +28,35 @@ Connect:
 - Relay NO1 - Pump +
 - 12V DC Adapter - to Pump -
 
-## Moisture sensor - TODO
-From the start I had an idea to monitor the moisture of the soil and to make the system 'smart' so the watering starts when moisture drops. The idea was to use battery-powered Node MCU connected with sensor to periodically send data about plant moisture. But this proved to be useless because readings were unreliable, it even appeared as if moisture increases over time. I also found out that commercial solutions don't rely on moisture sensors - sometimes sensors are used to check if it was raining to skip the watering -  but the main thing is that they have timers to define watering interval.
+## Moisture sensor
+From the start I had an idea to monitor the moisture of the soil and to make the system 'smart' so the watering starts when moisture drops. The idea was to use battery-powered Node MCU connected with sensor to periodically send data about plant moisture. But this proved to be useless because **readings were unreliable**, it even appeared as if moisture increases over time. I also found out that commercial solutions don't rely on moisture sensors - sometimes sensors are used to check if it was raining to skip the watering -  but the main thing is that they have timers to define watering interval.
 
-However, I'll add here the diagram for assembly of battery powered NodeMCU with moisture sensor if you want to try it (TBD).
+However, I'll add here things needed and diagram for assembly of battery powered NodeMCU with moisture sensor if you want to try it.
+
+### Parts needed
+
+- NodeMCU
+- AMS1117 linear voltage regulator
+- Casing for 4 AA batteries + batteries
+- YL-69 sensor (with YL-38 module - it usually comes together)
+
+### Assembly
+
+![Wiring for battery powered soil moisture sensor](diagrams/soil-moisture-sensor.png)
+
+Connect:
+
+- NodeMCU GND - AMS1117 GND-
+- NodeMCU VIN - AMS1117 VOUT+
+- AMS1117 VIN+ - Batteries +
+- AMS1117 GND- - Batteries -
+- NodeMCU GND - YL-38 GND
+- NodeMCU A0 - YL-38 A0
+- NodeMCU 3V3 - YL-38 VCC
+- YL-38 + and YL-38 - to YL-69 (+/- aren't marked on the sensor, it doesn't matter which side)
+- NodeMCU D0 - NodeMCU RST (ensures sleed)
+
+To send periodically readings to web-server with REST-API, use [this code](../arduino/sensors/moisture-sensor.cpp).
 
 ## Hose organization
 When the electronics part is ready, you need to connect the hoses and ensure that you really water your plants. I used submersible pump but I didn't soak it in the water because I didn't isolate the wires completely. If you put submersible pump outside of the water source, you need to suck the water into the hose to the pump or otherwise pump won't work. Be careful not to run pump dry as this can damage the pump.

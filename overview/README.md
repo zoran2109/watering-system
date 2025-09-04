@@ -51,7 +51,13 @@ On the other hand, some ideas that I had in the process proved to be dead ends. 
 - I intended to use solenoid valves to control watering of specific plant groups. For example, to water only peppers or tomatoes if sensors or experience shows that one plant group needs more water. But I dropped it because it seemed like an overkill for terrace garden with less than 20 plants. Additional complication was that the valve that I got was made for incompatible hose diameter (1/4" while pump was using 8mm ID).
 - When I decided to have wireless communication between Raspberry and pump (instead of USB), I tried running the server on pump-controlling Node MCU and use REST API to start watering. But both setting static IP on the pump device and using magic DNS seemed complicated and less reliable than using event-based system. I actually left possibility to use different communication strategies (serial, wifi, event-based) with the pump, but my choice was the latter.
 
-Although the web app was ready for some time, I was able to make the watering work only few days before vacation because I was waiting for hoses and hose splitters. Somewhat unexpectedly, smaller diameter hoses were hard to get delivered on short notice. However, I did it. There are many things that I can do to improve the solution, both on the hardware and software side, but it worked good and I was able to monitor the watering while on vacation.
+Although the web app was ready for some time, I was able to make the watering work only few days before vacation because I was waiting for hoses and hose splitters. Somewhat unexpectedly, smaller diameter hoses and splitters were hard to get delivered on short notice. The pump needed 8mm ID hose but I found out that this diameter was too big to water the plants directly. After short research I decided to use the 8mm ID hose as 'main line' that will connect to splitters from which the 4mm ID hoses will go to the plants.
+
+![Hose organization diagram](../schemas/diagrams/hose-organization.png)
+
+*The idea for hose organization*
+
+After finally connecting the hoses I tried testing everything and it worked good. Of course, there were still many things that I can do to improve the solution, both on the hardware and software side, but I did it - I was able to monitor the watering while on vacation.
 
 ![Screenshot of watering dashboard](../web-server/images/watering-dashboard-screenshot.png)
 
