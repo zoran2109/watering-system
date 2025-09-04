@@ -2,6 +2,8 @@
 
 ![Photo of cherry tomatoes](images/cover-image.jpg)
 
+*Those juicy cherry tomatoes wouldn't be there without regular watering :)*
+
 ## Introduction
 
 Having a terrace watering system is probably more of a statement than a practicality. Few pots or raised beds of vegetables won't feed you over the year but they can feel like a small act of resistance against mass-produced non-organic food that we encounter everyday. Furthermore, there's something special in harvesting your own food, even if this means stepping on the terrace and picking few ripe cherry tomatoes. But no matter how small the garden is, to make it happen some nurturing must be provided and this includes regular watering. Also, garden isn't only about effort - it's about continuity - being away from it for a week or two during the summer could have devastating effect on the plants. The simplest solution for this problem could be a friendly neighbour who's not away. But let's say that this option isn't always available. Enter IoT and watering automation.
@@ -78,10 +80,11 @@ There are commercial automated watering solutions that are affordable, but makin
 
 
 ## Further reading
-Here's the list of reading resources from the repository that can give more detailed view into technical details of my implementation:
+Here's the list of reading resources from the repository that can help in making of similar poject and give more detailed view into technical details of my implementation:
 
+- [Getting started](../README.MD#3-getting-started) - steps to follow if you want to make this project
 - [List of parts](PARTS.md) - lists the parts used for the projects with additional considerations
-- [Schemas](../schemas/README.md) - schemas for assembling Arudino controlled pump and sensor
+- [Schemas](../schemas/README.md) - schemas for assembly of Arudino controlled pump and sensor
 - [Arduino code](../arduino/README.md) - instructions for exporting code to Arduino
 - [Web server](../web-server/README.md) - detailed instructions for setting remote server on Raspberry Pi
 - [Deployment](../deploy/README.md) - instructions for setting up CD flow on Raspberry Pi

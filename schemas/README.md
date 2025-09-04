@@ -10,12 +10,23 @@
 
 ![High-level diagram showing how Arduino controls pump via relay](diagrams/pump-diagram.png)
 
-### Assembly - TODO
-- add detailed diagram how to connect all the parts
+### Assembly
+
+![Wiring diagram for arduino-pump-relay](diagrams/arduino-pump-relay.png)
+
+Connect:
+
+- Arduino D7 (digital input of choice) - Relay IN1
+- Arduino GND - Relay GND
+- Arduino 5V (in case of NodeMCU - VIN) - Relay VCC
+- Relay COM1 - 12V DC Adapter +
+- Relay NO1 - Pump +
+- 12V DC Adapter - to Pump -
 
 ## Moisture sensor - TODO
-- add diagram for Sensor with NodeMCU on batteries with deep sleep
-- elaborate why this isn't a good option
+From the start had an idea to monitor the moisture of the soil and to make the system 'smart' so the watering starts when moisture drops. The idea was to use battery-powered Node MCU connected with sensor to periodically send data about plant moisture. But this proved to be useless because readings were unreliable, it even appeared as if moisture increases over time. I also found out that commercial solutions don't rely on moisture sensors - sometimes sensors are used to check if it was raining to skip the watering -  but the main thing is that they have timers to define watering interval.
+
+However, I'll add here the diagram for assembly of battery powered NodeMCU with moisture sensor if you want to try it (TBD).
 
 ## Hose organization
 When the electronics part is ready, you need to connect the hoses and ensure that you really water your plants. I used submersible pump but I didn't soak it in the water because I didn't isolate the wires completely. If you put submersible pump outside of the water source, you need to suck the water into the hose to the pump or otherwise pump won't work. Be careful not to run pump dry as this can damage the pump.

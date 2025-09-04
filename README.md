@@ -1,4 +1,4 @@
-# Terrace watering system
+# Terrace garden watering system
 
 This repository contains code and instructions for creating a small automated watering system controlled by Raspberry Pi and Arduino/NodeMCU ESP8266. It's a hobby project that I started with some donated stuff (Raspberry Pi 3B, Arduino, pump, relay, etc. - thanks to donors!) and what I had at my disposal at a time somewhat directed the whole project. The idea was to host the web server on Rasbperry Pi that will be controller of the watering system. In this setup, pump for watering would be controlled from Arduino that would wait for instructions from Raspberry Pi. Also, I wanted to build this solution from ground up, not relying on existing ones with aim of learning something in the process.
 

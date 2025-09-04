@@ -6,7 +6,7 @@ This readme explains the content of the /web-server folder and steps needed to h
 Although running the app on Raspberry was intended usage, you can run the application anywhere by running install.sh script.
 
 ## Contents
-1. [High-level overview](#high-level-overview)
+1. [High-level overview](#high-level-overview---todo)
 2. [Folder contents](#folder-contents)
 3. [Hosting web server on Rasperry Pi](#hosting-web-server-on-raspberry-pi)
 
@@ -26,13 +26,13 @@ Although running the app on Raspberry was intended usage, you can run the applic
 - **docker-compose.yml** - can be used to run the whole application in Docker containers with minimal setup. To use the docker-compose directly you must have docker and docker-compose installed on your system
 - **install.sh** - script that installs prerequisites for running the web application on the system and afterwards it starts the server
 
-## Hosting web server on Rasperry Pi
+## Hosting web server on Raspberry Pi
 This part covers:
 
-    - Installing headless Raspberry Pi OS and cloning /watering-system repository
-    - Installing necessary dependencies and starting a web application on LAN
-    - Optional - exposing the URL for the web app with Tailscale so the app can be accessed outside of LAN
-    - Optional - setting GitHub actions so the app is redeployed when new commits are pushed to the repo
+- Installing headless Raspberry Pi OS and cloning /watering-system repository
+- Installing necessary dependencies and starting a web application on LAN
+- Optional - exposing the URL for the web app with Tailscale so the app can be accessed outside of LAN
+- Optional - setting GitHub actions so the app is redeployed when new commits are pushed to the repo
 
 ### Installing Raspberry Pi OS
 1. Install the Rasperry Pi Imager on your system and plug the micro SSD card (that you'll use with your Raspberry Pi) to your computer.

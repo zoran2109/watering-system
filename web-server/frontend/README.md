@@ -8,32 +8,32 @@ This project was bootstraped using the Vite CLI tool, with React and VanillaJS. 
 
 ### Code improvements
 
-1. Add dark/light theme
-2. Add absolute imports
-3. Clean tailwind classes if possible, remove clutter that doesn't style
-4. Improve fetching and refetch when needed (Tanstack Query)
-5. Use Zustand for app global state
-6. Add simple JSDoc to components and function
-7. Improve ESLint rules
-8. Make sensor extra section more flexible (extract log data no matter what is there)
-9. Extract reusable components (separate tailwind improved components and sections)
+1. Add absolute imports
+2. Clean tailwind classes if possible, remove clutter that doesn't style
+3. Improve fetching and refetch when needed (Tanstack Query)
+4. Use Zustand for app global state
+5. Add simple JSDoc to components and function
+6. Improve ESLint rules
+7. Make sensor extra section more flexible (extract log data no matter what is there)
+8. Extract reusable components (separate tailwind improved components and sections)
     - inputs
     - basic parts
     - bigger sections
-10. Define PropTypes
-11. Introduce Typescript
+9. Define PropTypes
+10. Introduce Typescript
 
 ### Feature improvements
 
-1. Extend settings section for pump (communication type, connection address)
-2. Add functionality for creating and deleting existing devices
-3. Improve visuals
+1. Add dark/light theme
+2. Extend settings section for pump (communication type, connection address)
+3. Add functionality for creating and deleting existing devices
+4. Improve visuals
     - buttons (hover, selected pseudoclasses - save for settings, start watering)
     - make modal and teble a bit nicer
-4. Disable watering button when watering starts, keep it this way until some defined timeout (maybe watering duration)
-5. Add SSE
+5. Disable watering button when watering starts, keep it this way until some defined timeout (maybe watering duration)
+6. Add SSE
     - consume SSE to push notifications and refetch data
-6. Add visualization (spinner) for loading, sending request
-7. Improve Logs table (more columns)
-8. Improve Pump settings - additional fields
-9. Add Sign-in/Register option
+7. Add visualization (spinner) for loading, sending request
+8. Improve Logs table (more columns)
+9. Improve Pump settings - additional fields
+10. Add Sign-in/Register option
