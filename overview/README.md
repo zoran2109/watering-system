@@ -82,7 +82,7 @@ There are commercial automated watering solutions that are affordable, but makin
 ## Further reading
 Here's the list of reading resources from the repository that can help in making of similar poject and give more detailed view into technical details of my implementation:
 
-- [Getting started](../README.MD#3-getting-started) - steps to follow if you want to make this project
+- [Getting started](../README.md#3-getting-started) - steps to follow if you want to make this project
 - [List of parts](PARTS.md) - lists the parts used for the projects with additional considerations
 - [Schemas](../schemas/README.md) - schemas for assembly of Arudino controlled pump and sensor
 - [Arduino code](../arduino/README.md) - instructions for exporting code to Arduino
