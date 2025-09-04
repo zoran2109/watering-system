@@ -23,6 +23,10 @@ Length of the hoses as well as number of hose connectors depend on the size of t
 - pneumatic hose connectors (10mm for the main valve, splits to 3x 6mm) - main 10/11mm hose will run through those connectors and 6mm hoses will split to plants
 - a bucket :)
 
+![Image of used splitter](images/splitter.png)
+
+*Splitter that was used to connect the main hose with smaller hoses that will water the plants*
+
 ## Additional considerations
 1. Pump choices - I used the submersible pump for this project because it was 'lying around', but other ones can also be used. I didn't investigate this enough to elaborate on it. This is worth checking because you may find something that suits your project better.
 2. Controlling the pump - Likewise, I used relay because I had it and it was simple to connect, but there is also option to use MOSFET. In this setup you maybe wouldn't need to power NodeMcu and pump separately (I used 5V supply for NodeMCU/relay and 12V for pump)

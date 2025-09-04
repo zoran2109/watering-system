@@ -5,14 +5,21 @@ The /web-server folder contains web application that functions as a dashboard fo
 This readme explains the content of the /web-server folder and steps needed to host the web application on Raspberry Pi.
 Although running the app on Raspberry was intended usage, you can run the application anywhere by running install.sh script.
 
-## Contents - TODO
+## Contents
+1. [High-level overview](#high-level-overview)
+2. [Folder contents](#folder-contents)
+3. [Hosting web server on Rasperry Pi](#hosting-web-server-on-raspberry-pi)
 
 ## High level overview - TODO
 ![Database table organization](images/database-tables.png)
 
+*Data tables used in the application*
+
 ![Frontend dashboard screenshot](images/watering-dashboard-screenshot.png)
 
-## Content of /web-server
+*Dashboard screenshot showing pump device with access to settings and logs*
+
+## Folder contents
 - **/frontend** - UI for dashboard written in React + Vite, for more info check [Frontend README](frontend/README.md)
 - **/backend** - backend for dashboard app that controls watering written in Node.js + Express, for more info check [Backend README](backend/README.md)
 - **/mosquitto** - folder that contains config for mosquitto MQTT broker
@@ -21,6 +28,7 @@ Although running the app on Raspberry was intended usage, you can run the applic
 
 ## Hosting web server on Rasperry Pi
 This part covers:
+
     - Installing headless Raspberry Pi OS and cloning /watering-system repository
     - Installing necessary dependencies and starting a web application on LAN
     - Optional - exposing the URL for the web app with Tailscale so the app can be accessed outside of LAN
