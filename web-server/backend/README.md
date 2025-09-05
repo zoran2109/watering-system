@@ -18,9 +18,8 @@ The backend is made in Vanilla JS using Node.js and Express. Sequalize is used f
     - make Swagger API callse work in prod (doesn't work because backend is called with added '/api' to URL)
 5. Improve ESLint rules
 6. Add unified response schema as middleware (object with data, meta, error fields)
-7. Ensure data folder (sqlite) isn't deleted during rebuild of Docker container
-8. Introduce Typescript
-9. Test and 'clean' serial and wifi water strategies
+7. Introduce Typescript
+8. Test and 'clean' serial and wifi water strategies
 
 ### Feature improvements
 
