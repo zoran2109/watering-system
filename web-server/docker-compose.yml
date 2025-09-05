@@ -18,7 +18,7 @@ services:
       - "3000:3000"
     privileged: true
     volumes:
-      - ./backend/data:/app/data
+      - ./backend/src/db/data:/app/data
     environment:
       - NODE_ENV=development
       - MQTT_BROKER_URL=mqtt://mqtt-broker:1883
