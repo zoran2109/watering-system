@@ -6,7 +6,7 @@ This repository contains code and instructions for creating a small automated wa
 1. [High-level solution](#1-high-level-solution)
 2. [Repository overview](#2-repository-overview)
 3. [Getting started](#3-getting-started)
-4. [About this release](#4-about-this-release-(v1.0.0))
+4. [About this release](#4-about-this-release-v100)
 
 ## 1. High-level solution
 1. Arduino/NodeMCU ESP8266 controls water pump through relay.
